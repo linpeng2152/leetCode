@@ -22,47 +22,41 @@ public class Topic02 {
      * 原因：342 + 465 = 807
      */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int num1 = 0;
-        ListNode cur = l1;
-        num1 += cur.val;
-        int x = 1;
-        while(cur.next != null){
-            x = 10*x;
-            cur = cur.next;
-            num1 += x*cur.val;
-        }
+        ListNode cur = null;
+        ListNode next = null;
+        ListNode first=null;
+        ListNode cur1 = l1;
+        ListNode cur2 = l2;
 
-        int num2 = 0;
-        cur = l2;
-        num2 += cur.val;
-         x = 1;
-        while(cur.next != null){
-            x = 10*x;
-            cur = cur.next;
-            num2 += x*cur.val;
-        }
-        int num3 = num1 + num2;//807
-
-
-
-        String s =new Integer(num3).toString();
-        cur = null;
-        ListNode first = null;
-        for(int i  = 0;i< s.length(); i++){
-            String ite = String.valueOf(s.charAt(i));
-            Long val = Long.valueOf(ite);
-            ListNode item = new ListNode(val.intValue());
-            if(cur == null){
-                cur=item;
-                first =item;
+        int n1,n2,val;
+        int x=0;
+        while(cur1 != null || cur2 != null || x != 0) {
+            n1 = (cur1 == null) ?  0 : cur1.val;
+            n2 = (cur2 == null) ? 0 : cur2.val;
+            int y = n1 + n2 + x ;
+            if( y >= 10){
+                x = 1;
+                y = y - 10;
             }else{
-                item.next = cur;
-                cur = item;
+                x= 0;
             }
 
+            if(first == null){
+                cur = new ListNode(y);
+                first = cur;
+            }else{
+                next = new ListNode(y);
+                cur.next = next;
+                cur = next;
+            }
+
+            cur1 = (cur1 == null) ?  null :cur1.next;
+            cur2 = (cur2 == null) ?  null :cur2.next;
+
         }
 
-        return cur;
+
+        return first;
     }
 
     public static void main(String[] args){
@@ -80,14 +74,18 @@ public class Topic02 {
         l22.next = l23;
 
         ListNode result = addTwoNumbers(l11,l21);
-        System.out.println(result.val + " " + result.next.val + "  " + result.next.next.val);
+        do {
+            System.out.print(result.val + "   ");
+
+        }while((result = result.next) != null );
+
 
     }
 
     static class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) { val = x; }
+      public int val;
+        public ListNode next;
+        public ListNode(int x) { val = x; }
   }
 
 }

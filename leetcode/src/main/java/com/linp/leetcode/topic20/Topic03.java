@@ -29,17 +29,23 @@ public class Topic03 {
      */
     public static int  lengthOfLongestSubstring(String s) {
         int length = s.length();
-        int max = 1;
-        for(int i=0; i<length; i++){
-            for(int j=0; j<length-i; j++){
-                String subStr = s.substring(i,length - j);
-                if(check(subStr)){
-                    if(max < length - i - j){
-                        max = length - i - j;
+
+        Set<Character> set = new HashSet<>();
+        for(char c:s.toCharArray()){
+            set.add(c);
+        }
+        int max = set.size();
+        while(max > 2){
+            for(int i=0; i+max<=length; i++){
+                String subStr = s.substring(i,i+max);
+                    if(check(subStr)) {
+                        return max;
                     }
                 }
-            }
+
+            max --;
         }
+
 
         return max;
 
@@ -60,7 +66,7 @@ public class Topic03 {
 
 
     public static void main(String[] args) {
-        String str = "abcabcbb";
+        String str = "dvdf";
 
         System.out.println(lengthOfLongestSubstring(str));
 
