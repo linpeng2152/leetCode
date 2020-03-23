@@ -28,4 +28,22 @@ public class ListNode {
         return str;
     }
 
+    public  static ListNode line(int ... nums){
+
+
+        ListNode first = new ListNode(nums[0]);
+        ListNode cur = first;
+
+        for(int i = 1;i<nums.length;i++){
+            ListNode item = new ListNode(nums[i]);
+            cur.next =  item;
+            cur = item;
+
+        }
+
+        return first;
+
+
+    }
+
 }
