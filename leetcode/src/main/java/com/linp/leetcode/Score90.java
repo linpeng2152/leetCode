@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 每枪 1～ 10
+ * 每枪 0～ 10
  * 打 10枪
  * 打出 90环
  */
@@ -42,13 +42,10 @@ public class Score90 {
         System.out.println(" -------------start-------------- ");
         for (int[] arr : list) {
             for (int i : arr) {
-                System.out.print(i + " ");
-
+                System.out.print((10-i) + " ");
             }
             System.out.println();
         }
-
-
         System.out.println(" -------------end-------------- ");
         System.out.println(" 总共  " + list.size());
 
