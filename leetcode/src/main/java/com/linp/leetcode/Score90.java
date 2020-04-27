@@ -30,7 +30,7 @@ public class Score90 {
 
         Long st = System.currentTimeMillis();
         System.out.println(st);
-//        gun();
+//        System.out.println("总数 "+gun().size());
         print(gun());
 
         System.out.println(System.currentTimeMillis() - st);
