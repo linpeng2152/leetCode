@@ -25,21 +25,34 @@ public class Topic1_1_10 {
      * @param target 需要查找的数字
      * @return -1 表示不存在、其余表示位置
      */
+
     public static int searchBinary(int[] arr, int target) {
+        //开始时的最小值位置
         int lo = 0;
+        //开始时的最大值位置
         int hi = arr.length - 1;
 
+        //当移动时 发现 最小值的位置 大于 最大值的位置时 则结束查找
         while (lo <= hi) {
+
+            //找出中间值
             int mid = lo + (hi - lo) / 2;
+
+            //中间值比 > 目标值  则将位置最大值往中间移动
             if (target < arr[mid]) {
                 hi = mid - 1;
-            } else if (target > arr[mid]) {
+
+            }
+            //中间值比 < 目标值  则将位置最小值往中间移动
+            else if (target > arr[mid]) {
                 lo = mid + 1;
-            } else {
+            }
+            //中间值比 == 目标值  则直接返回位置
+            else {
                 return mid;
             }
-
         }
+
         return -1;
 
     }
